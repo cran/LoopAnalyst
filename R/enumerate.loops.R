@@ -34,6 +34,7 @@ enumerate.loops <- function(CM) {
 				}
 			}
 		for (z in LOVE[-1]) {
+
 			ENVY <- ENVY[ENVY != z]
 			}
 
@@ -58,8 +59,6 @@ enumerate.loops <- function(CM) {
 		Term[1:x-1,1:N] <<- 1
 		Term[1:N,1:x-1] <<- 1
 			
-		return(Term)
-			
 		# end update.Term()
 		}
 
@@ -73,8 +72,6 @@ enumerate.loops <- function(CM) {
 			} else {
 		 	LOL <<- c(LOL,list(LOVE))
 		 	}
-		 	
-		 return(LOL)
 		 	
 		 # end add.LOVE.to.LOL()
 		 }
@@ -91,12 +88,13 @@ enumerate.loops <- function(CM) {
 		if (length(ENVY) == 0) {
 			Term[LOVE[length(LOVE)-1],LOVE[length(LOVE)]] <<- 1
 			LOVE <<- LOVE[-length(LOVE)]
-		   Term <<- update.Term()
+		   update.Term()
 
 			# exit SearchStep if the last element of LOVE is i or if LOVE is empty 
 			# and return List Of Loops (LOL)
 			if (length(LOVE) == 0 ) {
 				incomplete <<- FALSE
+				return()
 				}
 			} else {
 
@@ -105,7 +103,7 @@ enumerate.loops <- function(CM) {
 
 			# test whether new LOVE is a loop and respond accordingly
 			if (is.loop() == TRUE) {
-				LOL <<- add.LOVE.to.LOL()
+				add.LOVE.to.LOL()
 				Term[LOVE[length(LOVE)-1],LOVE[length(LOVE)]] <<- 1
 				LOVE <<- LOVE[-length(LOVE)]
 				}
@@ -133,12 +131,12 @@ enumerate.loops <- function(CM) {
 		while (incomplete) {
 			search.step()
 			}
-		return(LOL)
 		}
 
 	if ( !identical(CM[N,N],0) ) {
 		LOL <- c( LOL,list( c(N,N) ) )
 		}
+
 
 	return(LOL)
 	

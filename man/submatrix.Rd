@@ -1,7 +1,7 @@
 \name{submatrix}
 \docType{data}
 \alias{submatrix}
-\title{A Three-Parameter Sub-Matrix of a Simmulated Five-Parameter Data Set}
+\title{A Three-Parameter Sub-Matrix of a Simulated Five-Parameter Data Set}
 \description{
 This dataset represents a subset of the causal relationships defining a five-parameter system.  Specifically, it contains the second, third and fourth parameters of the dataset \code{community.matrix}.
 }
