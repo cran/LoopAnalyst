@@ -79,7 +79,7 @@ make.cm <- function(n=NA) {
 				}
 			}
 
-		return(CM)
+		return(t(CM))
 
 		# end cmcollapse()
 		}
