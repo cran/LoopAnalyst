@@ -58,11 +58,11 @@ graph.cm <- function(CM, file = stop("'file' must be specified")) {
 	if ( !identical(CM.Name.Val[1],3) & !identical(CM.Name.Val[2],3) ) {
 	   	sink(file = file)
 		file.CM <- cat("digraph G {\n", "size = \"18,18\";\n")
-		for (i in 1:N) {
-			file.CM <- cat(" P", i, " [shape = circle];\n", sep = "")
-			for (j in 1:N) {
+		for (j in 1:N) {
+			file.CM <- cat(" P", j, " [shape = circle];\n", sep = "")
+			for (i in 1:N) {
 				if (CM[i,j] != 0) {
-					file.CM <- cat(file.CM, " P", i, " -> P", j, sep = "")
+					file.CM <- cat(file.CM, " P", j, " -> P", i, sep = "")
 					if (CM[i,j] == -1) {
 						file.CM <- cat(file.CM, "[arrowhead=odot]", sep = "")
 						}
@@ -84,11 +84,11 @@ graph.cm <- function(CM, file = stop("'file' must be specified")) {
 		 	
 	   	sink(file = file)
 		file.CM <- cat("digraph G {\n", "size = \"18,18\";\n")
-		for (i in 1:N) {
-			file.CM <- cat(Parameters[i], " [shape = circle];\n", sep = "")
-			for (j in 1:N) {
+		for (j in 1:N) {
+			file.CM <- cat(Parameters[j], " [shape = circle];\n", sep = "")
+			for (i in 1:N) {
 				if (CM[i,j] != 0) {
-					file.CM <- cat(file.CM, Parameters[i], " -> ", Parameters[j], sep = "")
+					file.CM <- cat(file.CM, Parameters[j], " -> ", Parameters[i], sep = "")
 					if (CM[i,j] == -1) {
 						file.CM <- cat(file.CM, " [arrowhead=odot]", sep = "")
 						}

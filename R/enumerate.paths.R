@@ -50,8 +50,8 @@ enumerate.paths <- function(CM,i,j) {
 
 		ENVY <- NULL
 		for (x in 1:N) {
-			if (!(identical((CM[LOVE[length(LOVE)],x]),0))) {
-				if (identical(Term[LOVE[length(LOVE)],x],0)) {
+			if (!(identical((CM[x,LOVE[length(LOVE)]]),0))) {
+				if (identical(Term[x,LOVE[length(LOVE)]],0)) {
 					ENVY <- c(ENVY,x)
 					}
 				}
@@ -71,7 +71,7 @@ enumerate.paths <- function(CM,i,j) {
 	update.Term <- function() {
 		for (x in 1:N) {
 			if (!(x %in% LOVE)) {
-				Term[x,c(1:N)] <<- 0
+				Term[c(1:N),x] <<- 0
 				}
 			}
 		# end update.Term()
@@ -103,7 +103,7 @@ enumerate.paths <- function(CM,i,j) {
 		# terminate the last element of LOVE for the second to last element of 
 		# LOVE.
 		if (length(ENVY) == 0) {
-			Term[LOVE[length(LOVE)-1],LOVE[length(LOVE)]] <<- 1
+			Term[LOVE[length(LOVE)],LOVE[length(LOVE)-1]] <<- 1
 			LOVE <<- LOVE[-length(LOVE)]
 		   update.Term()
 			# exit SearchStep if the last element of LOVE is i & i is terminated
@@ -114,14 +114,14 @@ enumerate.paths <- function(CM,i,j) {
 			if (length(LOVE) == 1) {
 				test <- FALSE
 				for (val in c(1:N)[-i]) {
-					if (Term[i,val]==TRUE) {
+					if (Term[val,i]==TRUE) {
 						test <- TRUE
 						}
 					}
 				if (test) {
 					return()
 					}
-				Term[LOVE[length(LOVE)],1:N] <<- 1
+				Term[1:N,LOVE[length(LOVE)]] <<- 1
 				LOVE <<- LOVE[-length(LOVE)]
 			   update.Term()
 				incomplete <<- FALSE
@@ -132,7 +132,7 @@ enumerate.paths <- function(CM,i,j) {
 					# test whether new LOVE is a path from i to j and respond accordingly
 					if (is.path(LOVE,j) == TRUE) {
 						add.LOVE.to.LOP()
-						Term[LOVE[length(LOVE)-1],LOVE[length(LOVE)]] <<- 1
+						Term[LOVE[length(LOVE)],LOVE[length(LOVE)-1]] <<- 1
 						LOVE <<- LOVE[-length(LOVE)]
 						}
 						}

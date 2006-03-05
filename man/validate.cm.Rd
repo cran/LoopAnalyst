@@ -11,7 +11,7 @@ validate.cm(CM)
  \item{CM}{A potential community matrix to be tested.}
 }
 \details{
-A community matrix is deemed valid if it is a square matrix, with no missing values, where each element has the value -1, 0 or 1, and each element has at least one parent and one child parameter.
+A community matrix is deemed valid if it is a square matrix, with no missing values, where each element has the value -1, 0 or 1, and each element has at least one parent and one child variable.
 }
 \value{
 TRUE.

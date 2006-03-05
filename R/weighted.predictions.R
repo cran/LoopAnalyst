@@ -1,99 +1,62 @@
-# make.cem returns a community effect matrix. It takes:
+# weighted.predictions returns a community effect matrix with ambiguous terms 
+# resolved using weighted feedback where possible. It takes:
 # CM: a valid community effect matrix
 
-make.cem <- function(CM, status=FALSE, out=FALSE) {
+weighted.predictions <- function(CM, status=FALSE) {
 
 # enumerate.paths returns a list of paths (LOP) takes as it's arguments:
 #   CM: a Community Matrix
 #   i:  a starting parameter
 #   j:  an ending parameter
-enumerate.paths <- function(CM,i,j) {
-
-	if (!is.numeric(i)) {
-		if (is.na(match(i,rownames(CM)))) {
-			stop("\nvalue \"", i, "\" of i is not the name of a parameter in the community matrix!\n")
-			}
-		match(i, rownames(CM)) -> i
-		}
-		
-	if (!is.numeric(j)) {
-		if (is.na(match(j,rownames(CM)))) {
-			stop("\nvalue \"", j, "\" of j is not the name of a parameter in the community matrix!\n")
-			}
-		match(j, rownames(CM)) -> j
-		}
-
-	validate.i.j <- function(i,j,N) {
-		if ( !(floor(i)==i) | !(floor(j)==j) | i > N | j > N | i < 1 | j < 1) {
-			stop("\ni and j must be integer values between 1 and ", N, ", or the names of the \ncommunity matrix parameters!")
-			}
-		# end validate.i.j
-		}
-
- 
-# is.path tests that a list of visited elements terminates in the jth
-# parameter. It returns TRUE or FALSE and takes:
-# LOVE: a list of visited elements
-# j: a parameter that terminates a path from i to j
-
-	is.path <- function(LOVE,j) {
-		if (LOVE[length(LOVE)] == j) {
-			return(TRUE)
-			} else {
-		 	return(FALSE)
-		 	}
-		 	
-		# end is.path()
-		} 
-
+	enumerate.paths <- function(CM,i,j) {
 
 # make.ENVY() returns a list of Elements Not Visted Yet (ENVY) from:
 # CM: a valid Community Matrix
 # Term: a valid Termination matrix
 # LOVE: a list of visited elements within CM 
-	make.ENVY <- function() {
+		make.ENVY <- function() {
 
-		ENVY <- NULL
-		for (x in 1:N) {
-			if (!(identical((CM[x,LOVE[length(LOVE)]]),0))) {
-				if (identical(Term[x,LOVE[length(LOVE)]],0)) {
-					ENVY <- c(ENVY,x)
+			ENVY <- NULL
+			for (x in 1:N) {
+				if (!(identical((CM[x,LOVE[length(LOVE)]]),0))) {
+					if (identical(Term[x,LOVE[length(LOVE)]],0)) {
+						ENVY <- c(ENVY,x)
+						}
 					}
 				}
-			}
-		for (x in LOVE) {
-			ENVY <- ENVY[ENVY != x]
-			}
+			for (x in LOVE) {
+				ENVY <- ENVY[ENVY != x]
+				}
 
-		return(ENVY)
-				
-		# end make.ENVY()	
-		}
+			return(ENVY)
+
+			# end make.ENVY()	
+			}
 		
 	# update.Term() clears rows in the termination matrix Term of any
 	# parameters not in the List Of Visited Elements (LOVE). It
 	# modifies global Term:
-	update.Term <- function() {
-		for (x in 1:N) {
-			if (!(x %in% LOVE)) {
-				Term[c(1:N),x] <<- 0
+		update.Term <- function() {
+			for (x in 1:N) {
+				if (!(x %in% LOVE)) {
+					Term[c(1:N),x] <<- 0
+					}
 				}
+			# end update.Term()
 			}
-		# end update.Term()
-		}
 		
 	# add.LOVE.to.LOP adds the List Of Visited Elements (LOVE) to the
 	# List Of Paths (LOP) and returns LOP. It takes:
 	# LOVE: a list of visited elements
 	# LOP: a list of paths
-	add.LOVE.to.LOP <- function() {
-		if (is.null(LOP)) {
-			LOP <<- list(LOVE)
-			} else {
-		 			LOP <<- c(LOP,list(LOVE))
-		 			}
-		 # end add.LOVE.to.LOP()
-		 }
+		add.LOVE.to.LOP <- function() {
+			if (is.null(LOP)) {
+				LOP <<- list(LOVE)
+				} else {
+			 			LOP <<- c(LOP,list(LOVE))
+			 			}
+			 # end add.LOVE.to.LOP()
+			 }
 
 	# search.step is the main logic of the breadth-wide path search. It
 	# returns a list of paths (LOP), and takes:
@@ -102,76 +65,75 @@ enumerate.paths <- function(CM,i,j) {
 	# LOVE: a list of visited elements within CM
 	# LOP: a list of paths within CM 
 	# j: a parameter within CM that terminates a path from i to j
-	search.step <- function() {
-		ENVY <- make.ENVY()
-		# when there are no unvisited elements & LOVE has more than 1 element, 
-		# terminate the last element of LOVE for the second to last element of 
-		# LOVE.
-		if (length(ENVY) == 0) {
-			Term[LOVE[length(LOVE)],LOVE[length(LOVE)-1]] <<- 1
-			LOVE <<- LOVE[-length(LOVE)]
-		   update.Term()
-			# exit SearchStep if the last element of LOVE is i & i is terminated
-			# or if LOVE is empty and return List Of Paths (LOP)
-			if (length(LOVE) == 0 ) {
-				incomplete <<- FALSE
-				}
-			if (length(LOVE) == 1) {
-				test <- FALSE
-				for (val in c(1:N)[-i]) {
-					if (Term[val,i]==TRUE) {
-						test <- TRUE
-						}
-					}
-				if (test) {
-					return()
-					}
-				Term[1:N,LOVE[length(LOVE)]] <<- 1
+		search.step <- function() {
+			ENVY <- make.ENVY()
+			# when there are no unvisited elements & LOVE has more than 1 element, 
+			# terminate the last element of LOVE for the second to last element of 
+			# LOVE.
+			if (length(ENVY) == 0) {
+				Term[LOVE[length(LOVE)],LOVE[length(LOVE)-1]] <<- 1
 				LOVE <<- LOVE[-length(LOVE)]
 			   update.Term()
-				incomplete <<- FALSE
-				}
-			} else {
-					# append the first element (breadthwise search) of ENVY to LOVE
-		 			LOVE <<- c(LOVE,ENVY[1])
-					# test whether new LOVE is a path from i to j and respond accordingly
-					if (is.path(LOVE,j) == TRUE) {
-						add.LOVE.to.LOP()
-						Term[LOVE[length(LOVE)],LOVE[length(LOVE)-1]] <<- 1
-						LOVE <<- LOVE[-length(LOVE)]
+				# exit SearchStep if the last element of LOVE is i & i is terminated
+				# or if LOVE is empty and return List Of Paths (LOP)
+				if (length(LOVE) == 0 ) {
+					incomplete <<- FALSE
+					}
+				if (length(LOVE) == 1) {
+					test <- FALSE
+					for (val in c(1:N)[-i]) {
+						if (Term[val,i]==TRUE) {
+							test <- TRUE
+							}
 						}
+					if (test) {
+						return()
+						}
+					Term[1:N,LOVE[length(LOVE)]] <<- 1
+					LOVE <<- LOVE[-length(LOVE)]
+				   update.Term()
+					incomplete <<- FALSE
+					}
+				} else {
+						# append the first element (breadthwise search) of ENVY to LOVE
+			 			LOVE <<- c(LOVE,ENVY[1])						# test whether new LOVE is a path from i to j and respond accordingly
+
+						# test whether LOVE is a path ending at j
+						if (LOVE[length(LOVE)] == j) {
+							add.LOVE.to.LOP()
+							Term[LOVE[length(LOVE)],LOVE[length(LOVE)-1]] <<- 1
+							LOVE <<- LOVE[-length(LOVE)]
+							}
 						}
 	
-		# end search.step()
-		}
+			# end search.step()
+			}
 	
-	# Set N = rowsize of CM
-	N <- nrow(CM)
+		# Set N = rowsize of CM
+		N <- nrow(CM)
 
-	validate.i.j(i,j,N)
+		 # take care of the simple case of i = j
+		 if (identical(i,j)) {
+		 		LOP <- list(c(i,j))
+		 		return(LOP)
+		   	}
 
-	 # take care of the simple case of i = j
-	 if (identical(i,j)) {
-	 		LOP <- list(c(i,j))
-	 		return(LOP)
-	   	}
+		# initialize search termination matrix
+		Term <- matrix(c(0),N,N)
 
-	# initialize search termination matrix
-	Term <- matrix(c(0),N,N)
+		 # initialize list of paths (LOP), list of visited elements (LOVE)
+		 LOP <- NULL
+		 LOVE <- c(i)
 
-	 # initialize list of paths (LOP), list of visited elements (LOVE)
-	 LOP <- NULL
-	 LOVE <- c(i)
-	 
-	incomplete <- TRUE
-	while (incomplete) {
-		search.step()
-		}
+		incomplete <- TRUE
+		while (incomplete) {
+			search.step()
+			}
  	
- 	return(LOP)
- 	
- 	# end enumerate.paths()
- 	}
+ 		return(LOP)
+
+	 	# end enumerate.paths()
+ 		}
 
 
 # path.compliment takes as its input a path vector (Path) from i to j and returns the 
@@ -203,8 +165,8 @@ enumerate.paths <- function(CM,i,j) {
 	
 		# end looplist.elements
 		}
-
-
+	
+	
 # sum.path.x.C returns a sign sum of paths times the feedback of their 
 # complimentary subsystems. It takes:
 # CM: a community matrix
@@ -329,6 +291,7 @@ enumerate.SOSL <- function(MOSL,N) {
 		SOSL <- NULL
 		k.last <- NULL
 
+		# search.row returns a list of rows with not in PLOS
 		search.row <- function(PLOS) {
  
 			if (length(PLOS) == 0) {    				return(1)
@@ -344,6 +307,8 @@ enumerate.SOSL <- function(MOSL,N) {
 			# end search.row
 			}  
  
+		# search.over iterates from Term[1,1] through Term[1,N.MOSL] and searches
+		# the length of each list. If it finds a 0 termination, it returns false. 
 		search.over <- function(row) {
 			if (row == 1) {
 				for (j in 1:length(MOSL[[1]])) {
@@ -516,30 +481,28 @@ enumerate.SOSL <- function(MOSL,N) {
 # C: the complimentary subsystem of a path through a CM
 
 	feedback.C <- function(C) {
+		
 		N <- nrow(C)
 		if (is.null(nrow(C))) {
-			return(C)
+			return(list(abs(C),-1*C))
 			}
 
 	   LOL <- (enumerate.loops(C))
-  	 if (is.null(LOL)) {
-   			return(0)
+		if (is.null(LOL)) {
+   			return(list(0,0))
    			}
+
 		Sum <- 0
-		for (SOSL in enumerate.SOSL(make.MOSL(LOL,N),N) ) {
+		loopsets <- enumerate.SOSL(make.MOSL(LOL,N),N)
+		for (SOSL in loopsets ) {
 			adjust <- (-1)^(length(SOSL)+1)
 			sprod <- sosl.prod(C,SOSL)*adjust
-			if (Sum == 0) {
-				Sum <- sprod
-				} else {
-				if (Sum == -1*sprod) {
-					return(NA)
-					}
-				}
+			Sum <- Sum + sprod
 			}
+		T.ij <- length(loopsets)
+		Adj.ij <- -1*Sum
+		return( list(T.ij, Adj.ij) )
 
-		return(Sum)
-	
 		# end feedback()
 		}
 
@@ -564,32 +527,29 @@ enumerate.SOSL <- function(MOSL,N) {
 			# end path.prod()
 			}
 	
-		Sum <- 0
-		for (path in enumerate.paths(CM,i,j)) {
+		T.ij <- 0
+		Adj.ij <- 0
+		for (path in enumerate.paths(CM,j,i)) {
 
-			# if the complimentary subsystem C has zero elements, assign F.C -1
+		# here what I want is to produce the Adjoint for a specific P.ij I name this Adj.ij
+
+			# if the complimentary subsystem C has zero elements, increment Adj.ij 
+			# by the path product
 			if (length(CM[path.compliment(path,N)]) == 0) {
-				F.C <- -1
-			# otherwise, produce feedback F.C from the complimentary subsystem C
-			 } else {
-					F.C <- feedback.C(CM[path.compliment(path,N),path.compliment(path,N)])
-					if (is.na(F.C)) {
-						return(NA)
-						}
-					}
+				T.ij <- T.ij + 1
+				Adj.ij <- Adj.ij + path.prod(CM,path)
 
-			P.F.C <- path.prod(CM,path)*F.C
-			# if this is the first time through the loop
-			if (Sum == 0) {
-				Sum <- P.F.C
-				} else {
-						if (Sum == -1*P.F.C){
-						return(NA)
-						}
-				}
+			 # otherwise, increment Adj.ij by the summed feedback times the path product.
+			 } else {
+					T.ij <- T.ij + feedback.C(CM[path.compliment(path,N),path.compliment(path,N)])[[1]]
+					Adj.ij <- Adj.ij + feedback.C(CM[path.compliment(path,N),path.compliment(path,N)])[[2]]*path.prod(CM,path)
+					}
 			}
 
-		return(Sum)
+		if (T.ij == 0) {
+			return(1)
+			}
+		return(Adj.ij/T.ij)
 	
 		# end sum.path.x.C()
 		}
@@ -599,13 +559,12 @@ enumerate.SOSL <- function(MOSL,N) {
 	F.N <- -1
 	df.dc <- 1
 	
-	CEM <- matrix(c(NA),N,N,dimnames=list(namerows,namerows))
+	WFM <- matrix(c(NA),N,N,dimnames=list(namerows,namerows))
 
 	if (!status) {
 		for (i in 1:N) {
 			for (j in 1:N) {
-					Sum <- sum.path.x.C(CM,i,j,N)
-					CEM[i,j] <- (df.dc*Sum)/F.N
+					WFM[i,j] <- sum.path.x.C(CM,i,j,N)
 				}
 			}
 		}
@@ -616,17 +575,45 @@ enumerate.SOSL <- function(MOSL,N) {
 			cat(namerows[i])
 			for (j in 1:N) {
 					Sum <- sum.path.x.C(CM,i,j,N)
-					CEM[i,j] <- (df.dc*Sum)/F.N
+					WFM[i,j] <- (df.dc*Sum)/F.N
 					cat(" .")
 				}
 			cat("\n")
 			}
 		}
 	
-	if (out) {
-		out.cm(CEM)
+	CEM <- make.cem(t(CM))
+	for (i in 1:N) {
+		for (j in 1:N) {
+			if (is.na(CEM[i,j])) {
+				if ( abs(as.numeric(WFM[i,j]))  >= 0.5 ) {
+					val <- sign(as.numeric(WFM[i,j]))
+					if (val == 1) {
+						WFM[i,j] <- "(+)"
+						}
+					if (val == -1) {
+						WFM[i,j] <- "(–)"
+						}
+					}
+				else {
+					WFM[i,j] <- " ? "
+					}
+				}
+			else {
+				val <- CEM[i,j]
+				if (val == 1) {
+					WFM[i,j] <- " + "
+					}
+				if (val == -1) {
+					WFM[i,j] <- " – "
+					}
+				if (val == 0) {
+					WFM[i,j] <- " 0 "
+					}
+				}
+			}
 		}
-	return(CEM)
+	print(WFM,quote=FALSE)
 	
-	# end make.cem()
+	# end weighted.predictions()
 	}

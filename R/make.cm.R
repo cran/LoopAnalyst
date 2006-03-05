@@ -1,3 +1,7 @@
+# make.cm() interactively solicits variable names and linakges between
+# variables to produce a community matrix. It takes:
+# N: the number of variables in the community matrix
+
 make.cm <- function(n=NA) {
 
 	N <- n
@@ -32,7 +36,7 @@ make.cm <- function(n=NA) {
 			i <- as.integer(i)
 			j <- as.integer(j)
 			while (N) {
-				Nij <- readline(sprintf("Relation from %s to %s (\"q\" to quit): ", rownames(CommunityMatrix)[i], rownames(CommunityMatrix)[j]))
+				Nij <- readline(sprintf("Relation from %s to %s (\"q\" to quit): ", rownames(CommunityMatrix)[j], rownames(CommunityMatrix)[i]))
 				if (identical(Nij,"1") || identical(Nij,"+")) {
 					CommunityMatrix[i,j] <- 1
 					break
@@ -79,7 +83,7 @@ make.cm <- function(n=NA) {
 				}
 			}
 
-		return(t(CM))
+		return(CM)
 
 		# end cmcollapse()
 		}

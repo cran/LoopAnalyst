@@ -2,17 +2,17 @@
 \alias{enumerate.paths}
 \title{Enumerates all Paths from i to j in a Community Matrix}
 \description{
-Enumerates a list of all paths from parameter i to parameter j in a community matrix after first validating that \code{CM} is a community matrix.
+Enumerates a list of all paths from variable i to variable j in a community matrix after first validating that \code{CM} is a community matrix.
 }
 \usage{
 enumerate.paths(CM,i,j)
 }
 \arguments{
  \item{CM}{A community matrix.}
- \item{i,j}{parameters in the community matrix \code{CM}. Parameters may be specified by their names or their parameter number (i.e. the row/column number corresponding to a specific parameter).}
+ \item{i,j}{variables in the community matrix \code{CM}. Variables may be specified by their names or numbers (i.e. the row/column number corresponding to a specific variable).}
 }
 \details{
-The returned list of paths contains each path from i to j in \code{CM} in breadth-first search order).  Each element in a path is represented by its parameter number.
+The returned list of paths contains each path from i to j in \code{CM} in breadth-first search order).  Each element in a path is represented by its variable number.
 }
 \value{
 A list of paths.

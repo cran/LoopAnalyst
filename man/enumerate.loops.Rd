@@ -11,7 +11,7 @@ enumerate.loops(CM)
  \item{CM}{A (-1, 0 1) matrix.}
 }
 \details{
-The returned list of loops contains each loop in \code{CM} in breadth-first search order).  Each element in a loop is represented by its parameter number, and the first element also terminates each loop.
+The returned list of loops contains each loop in \code{CM} in breadth-first search order).  Each element in a loop is represented by its variable number, and the first element also terminates each loop.
 }
 \value{
 A list of loops.
