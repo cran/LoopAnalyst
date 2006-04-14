@@ -23,7 +23,7 @@ Alexis Dinno \url{http://www.doyenne.com/LoopAnalyst/}
 }
 \examples{
 ## save a community matrix
-data(community.matrix)
-save.cm(community.matrix, file="Model1.cm")}
+data(cm.levins)
+save.cm(cm.levins, file="Model_1.cm")}
 }
 \keyword{file}

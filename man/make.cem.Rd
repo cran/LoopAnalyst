@@ -27,7 +27,7 @@ Alexis Dinno \url{http://www.doyenne.com/LoopAnalyst/}
 }
 \examples{
 ## compute community effect matrix
-data(community.matrix)
-make.cem(community.matrix)
+data(cm.levins)
+make.cem(cm.levins)
 }
 \keyword{graphs}

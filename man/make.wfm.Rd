@@ -32,7 +32,7 @@ Alexis Dinno \url{http://www.doyenne.com/LoopAnalyst/}
 }
 \examples{
 ## compute weighted feedback matrix
-data(community.matrix)
-make.wfm(community.matrix)
+data(cm.dambacher)
+make.wfm(cm.dambacher)
 }
 \keyword{graphs}

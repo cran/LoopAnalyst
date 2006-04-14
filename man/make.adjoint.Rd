@@ -30,7 +30,7 @@ Alexis Dinno \url{http://www.doyenne.com/LoopAnalyst/}
 }
 \examples{
 ## compute adjoint of a negative of a community matrix
-data(community.matrix)
-make.adjoint(community.matrix)
+data(cm.dambacher)
+make.adjoint(cm.dambacher)
 }
 \keyword{graphs}

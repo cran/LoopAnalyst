@@ -26,7 +26,7 @@ Alexis Dinno \url{http://www.doyenne.com/LoopAnalyst/}
 }
 \examples{
 ## graph a community matrix
-data(community.matrix)
-graph.cm(community.matrix, file="community.matrix.dot")
+data(cm.levins)
+graph.cm(cm.levins, file="community.matrix.dot")
 }
 \keyword{file}

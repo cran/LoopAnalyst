@@ -27,7 +27,7 @@ Alexis Dinno \url{http://www.doyenne.com/LoopAnalyst/}
 }
 \examples{
 ## assess community matrix
-data(community.matrix)
-validate.cm(community.matrix)
+data(cm.levins)
+validate.cm(cm.levins)
 }
 \keyword{graphs}

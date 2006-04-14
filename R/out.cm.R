@@ -14,7 +14,7 @@ out.cm <- function(M) {
 				M[i,j] <- "+"
 				}
 			if (M[i,j] == -1) {
-				M[i,j] <- "–"
+				M[i,j] <- "-"
 				}
 			}
 		}

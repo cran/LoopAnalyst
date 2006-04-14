@@ -24,7 +24,7 @@ Alexis Dinno \url{http://www.doyenne.com/LoopAnalyst/}
 }
 \examples{
 ## out a community matrix
-data(community.effect.matrix)
-out.cm(community.effect.matrix)
+data(cem.levins)
+out.cm(cem.levins)
 }
 \keyword{file}

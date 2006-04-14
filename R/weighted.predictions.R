@@ -592,7 +592,7 @@ enumerate.SOSL <- function(MOSL,N) {
 						WFM[i,j] <- "(+)"
 						}
 					if (val == -1) {
-						WFM[i,j] <- "(–)"
+						WFM[i,j] <- "(-)"
 						}
 					}
 				else {
@@ -605,7 +605,7 @@ enumerate.SOSL <- function(MOSL,N) {
 					WFM[i,j] <- " + "
 					}
 				if (val == -1) {
-					WFM[i,j] <- " – "
+					WFM[i,j] <- " - "
 					}
 				if (val == 0) {
 					WFM[i,j] <- " 0 "

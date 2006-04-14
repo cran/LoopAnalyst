@@ -28,7 +28,7 @@ Alexis Dinno \url{http://www.doyenne.com/LoopAnalyst/}
 }
 \examples{
 ## assess community matrix
-data(community.matrix)
-enumerate.paths(community.matrix,2,5)
+data(cm.levins)
+enumerate.paths(cm.levins,2,4)
 }
 \keyword{graphs}

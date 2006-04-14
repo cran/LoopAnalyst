@@ -22,8 +22,8 @@ Alexis Dinno \url{http://www.doyenne.com/LoopAnalyst/}
 }
 \examples{
 ## compute tables of correlations
-data(community.matrix)
-cem <- make.cem(community.matrix)
+data(cm.levins)
+cem <- make.cem(cm.levins)
 cem.corr(cem)
 }
 \keyword{graphs}

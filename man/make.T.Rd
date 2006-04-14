@@ -31,7 +31,7 @@ Alexis Dinno \url{http://www.doyenne.com/LoopAnalyst/}
 }
 \examples{
 ## compute T for a community matrix
-data(community.matrix)
-make.T(community.matrix)
+data(cm.dambacher)
+make.T(cm.dambacher)
 }
 \keyword{graphs}

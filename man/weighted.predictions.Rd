@@ -26,8 +26,10 @@ Alexis Dinno \url{http://www.doyenne.com/LoopAnalyst/}
 \code{\link{make.cem}, \link{make.wfm}, \link{make.adjoint}, and \link{make.T}}.
 }
 \examples{
-## compute weighted prediction matrix
-data(community.matrix)
-weighted.predictions(community.matrix)
+## compute community effect matrix, and note high prevalence of ambiguous predictions
+data(cm.dambacher)
+make.cem(cm.dambacher, out=TRUE)
+## compute weighted prediction matrix, and note disambiguation of the cem
+weighted.predictions(t(cm.dambacher))
 }
 \keyword{graphs}
