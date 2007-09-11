@@ -71,7 +71,6 @@ graph.cm <- function(CM, file = stop("'file' must be specified")) {
 				}
 			}
 		file.CM <- cat(file.CM, "}", sep = "")
-		unlink(file)
 		sink()
 		}
 
@@ -97,7 +96,6 @@ graph.cm <- function(CM, file = stop("'file' must be specified")) {
 				}
 			}
 		file.CM <- cat(file.CM, "}", sep = "")
-		unlink(file)
 		sink()
 		}
 		

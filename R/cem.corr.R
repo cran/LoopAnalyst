@@ -1,19 +1,19 @@
-# cem.corr() produces perturbation correlation tables from a community effect 
+# cem.corr() produces perturbation correlation tables from a community effect
 # matrix. It takes:
 # CEM: a community effect matrix
 
 
-# check for version compatibility and notify user of version incompatibility 
+# check for version compatibility and notify user of version incompatibility
 # and let them know i am ammenable to making back-compatible revisions.
 cem.corr <- function(CEM) {
 
 
-# out.cem.corr prints the correlation matrices using the format described in 
+# out.cem.corr prints the correlation matrices using the format described in
 # Puccia and Levins. It takes:
 # M: a list of length N of correclation matrices of size N.
 
 	out.cem.corr <- function(M) {
-	
+
 		N <- length(M)
 		for (corr in 1:N) {
 			for (i in 1:N) {
@@ -25,7 +25,7 @@ cem.corr <- function(CEM) {
 						M[[corr]][i,j] <- "+"
 						}
 					if (M[[corr]][i,j] == -1) {
-						M[[corr]][i,j] <- "–"
+						M[[corr]][i,j] <- "-"
 						}
 					if (!(j >= i)) {
 						M[[corr]][i,j] <- " "
@@ -52,7 +52,7 @@ cem.corr <- function(CEM) {
 	if (N != ncol(CEM)) {
 		stop("\nsupplied matrix is not square; community effect matrix expected!\n")
 		}
-    
+
 	# validate that the matrix contains elements that are one of 1, 0, -1 or NA
 	for (i in 1:N) {
 		for (j in 1:N) {
