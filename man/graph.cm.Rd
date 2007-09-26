@@ -5,13 +5,14 @@
 Represents a community matrix as a signed digraph in the dot language.
 }
 \usage{
-graph.cm(CM, file)
+graph.cm(CM, file, color="bw")
 }
 \arguments{
- \item{CM}{A community matrix to be graphed.}
+ \item{CM}{a community matrix to be graphed.}
  \item{file}{a connection or a character string giving the name of the dot file (should have a .dot suffix).}
+ \item{color}{select which color mode to graph the system: \code{bw}, \code{color}, or \code{greyscale}. Default \code{bw} is black and white.}
 }
-\details{This function outputs a dot file for use with \code{graphviz} or similar graph layout package to visually represent the community matrix system.
+\details{This function outputs a dot file for use with \code{graphviz} or similar graph layout package to visually represent the community matrix system. The color options \code{color} and \code{greyscale} assist in graph readability when there are a large number of nodes and connections between them.
 }
 \references{
   Puccia, C. J. and Levins, R. (1986) \emph{Qualitative Modeling of Complex Systems: An Introduction to Loop Analysis and Time Averaging}. Cambridge: Harvard University Press.
@@ -27,6 +28,10 @@ Alexis Dinno \url{http://www.doyenne.com/LoopAnalyst/}
 \examples{
 ## graph a community matrix
 data(cm.levins)
-graph.cm(cm.levins, file="community.matrix.dot")
+graph.cm(cm.levins, file="levins.dot")
+
+## graph a community matrix
+data(cm.dambacher)
+graph.cm(cm.dambacher, file="dambacher.dot", color="color")
 }
 \keyword{file}

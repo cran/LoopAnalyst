@@ -1,6 +1,10 @@
-# validate.cm validates a community matrix by testing that it is
-# square, has only elements of -1, 0 or 1, and has at least two
-# parameters. It produces an error if the community matrix is 
+# validate.cm validates a community matrix by testing that it:
+#   is a square matrix, 
+#   has only elements of -1, 0 or 1, 
+#   has at least two parameters,
+#   with at least one direct or indirect path from each variable to all other variables, and
+#   isnot fully specified. 
+# It produces an error if the community matrix is 
 # invalid by these tests, and returns nothing otherwise. It takes:
 # CM: a potential community matrix
 validate.cm <- function(CM) {
