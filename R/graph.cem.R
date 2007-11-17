@@ -52,7 +52,7 @@ graph.cem <- function(CEM, file = stop("'file' must be specified"), color="bw") 
 
 	validate.cem(CEM)
 
-	N <<- nrow(CEM)
+	N <- nrow(CEM)
 	
 	CEM.Name.Val <- validate.cem.names(CEM)
 

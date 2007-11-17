@@ -51,7 +51,7 @@ graph.cm <- function(CM, file = stop("'file' must be specified"), color="bw") {
 
 	validate.cm(CM)
 
-	N <<- nrow(CM)
+	N <- nrow(CM)
 	
 	CM.Name.Val <- validate.cm.names(CM)
 	

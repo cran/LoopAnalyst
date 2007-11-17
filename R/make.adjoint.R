@@ -507,7 +507,7 @@ enumerate.SOSL <- function(MOSL,N) {
 
 # path.prod() returns a sign product of a path. It takes:
 # CM: a community matrix
-# path: a path vactor through the community matrix
+# path: a path vector through the community matrix
 		path.prod <- function(CM,path) {
 			pprod <- CM[path[2],path[1]]
 			if (length(path) == 2) {
