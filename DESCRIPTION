@@ -1,6 +1,6 @@
 Package: LoopAnalyst
-Version: 1.2-0
-Date: 2007-11-17
+Version: 1.2-1
+Date: 2007-11-26
 Title: A collection of tools to conduct Levins' Loop Analysis
 Author: Alexis Dinno <adinno@hsph.harvard.edu>
 Maintainer: Alexis Dinno <adinno@hsph.harvard.edu>
@@ -9,4 +9,4 @@ Description: Loop analysis makes qualitative predictions of variable change in a
 License: GPL version 2 or newer
 LazyLoad: true
 URL: http://www.doyenne.com/LoopAnalyst
-Packaged: Sun Nov 25 13:10:04 2007; Alexis
+Packaged: Tue Nov 27 09:23:27 2007; hornik

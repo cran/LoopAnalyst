@@ -8,8 +8,8 @@ make.clem <- function(CM, status=FALSE) {
 
 	Adj <- make.adjoint(CM, status)
 
-	clem.B <- sign(-CM.B%*%t(Adj))
-	clem.D <- sign(-CM.D%*%t(Adj))
+	clem.B <- sign(-CM.B%*%Adj)
+	clem.D <- sign(-CM.D%*%Adj)
 	
 	CLEM <- clem.B
 

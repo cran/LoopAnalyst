@@ -25,5 +25,4 @@ Alexis Dinno \url{http://www.doyenne.com/LoopAnalyst/}
 ## save a community matrix
 data(cm.levins)
 save.cm(cm.levins, file="Model_1.cm")}
-}
 \keyword{file}
