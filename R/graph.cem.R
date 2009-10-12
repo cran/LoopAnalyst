@@ -80,8 +80,8 @@ graph.cem <- function(CEM, file = stop("'file' must be specified"), color="bw") 
 			chunk <- paste("#",chunk,chunk,chunk,sep="")
 			Colors <- c(Colors, chunk)
 			}
-		arrowhead <- "dot"
-		ambigarrow <- "teearrow"
+		arrowhead <- "odot"
+		ambigarrow <- "teeoarrow"
 		}
 
 	if (tolower(color) != "color" & tolower(color) != "greyscale") {
