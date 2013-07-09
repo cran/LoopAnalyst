@@ -11,9 +11,9 @@ make.T(CM, status=FALSE)
  \item{status}{Switches on an element-by-element progress indicator when set to \code{TRUE}. Set to \code{FALSE} by default.}
 }
 \details{
-The supplied matrix is validated as a community matrix, and its absolute feedback matrix is computed.  The value of a given element indicates the total number of disjoint cycles spanning all varibles of the complementary subsystem for each path from j to i.  Values of a given element may be positive or zero, and bounds the magnitude of the associated adjoint matrix of the negative community matrix.
+The supplied matrix is validated as a community matrix, and its absolute feedback matrix is computed.  The value of a given element indicates the total number of disjoint cycles spanning all variables of the complementary subsystem for each path from j to i.  Values of a given element may be positive or zero, and bounds the magnitude of the associated adjoint matrix of the negative community matrix.
 \cr
-NOTE: weighted feedback, adjoint and absolute feeback matrices are transposed relative to the community effect matrix.
+NOTE: weighted feedback, adjoint and absolute feedback matrices are transposed relative to the community effect matrix.
 }
 \value{
 The absolute feedback matrix for a community matrix
@@ -31,7 +31,7 @@ Alexis Dinno \url{http://www.doyenne.com/LoopAnalyst/}
 }
 \examples{
 ## compute T for a community matrix
-data(cm.dambacher)
-make.T(cm.dambacher)
+data(cm.zavaleta)
+make.T(cm.zavaleta)
 }
 \keyword{graphs}

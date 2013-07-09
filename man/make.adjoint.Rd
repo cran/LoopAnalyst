@@ -13,7 +13,7 @@ make.adjoint(CM, status=FALSE)
 \details{
 The supplied matrix is validated as a community matrix, and the adjoint matrix of the community matrix's negative is computed.  The value of a given element indicates the sum of feedback at all levels, under the assumption that, in the absence of relative specification of community matrix linkages, each level of feedback ought to account for the same proportion of total feedback contributing to the effect on \code{j} of a press perturbation on \code{i}.  Values of a given element may be positive, zero or negative integer values, but of a magnitude no larger than the corresponding value in the absolute feedback matrix T.
 \cr
-NOTE: weighted feedback, adjoint and absolute feeback matrices are transposed relative to the community effect matrix.
+NOTE: weighted feedback, adjoint and absolute feedback matrices are transposed relative to the community effect matrix.
 }
 \value{
 The adjoint matrix of a negative community matrix
@@ -30,7 +30,7 @@ Alexis Dinno \url{http://www.doyenne.com/LoopAnalyst/}
 }
 \examples{
 ## compute adjoint of a negative of a community matrix
-data(cm.dambacher)
-make.adjoint(cm.dambacher)
+data(cm.zavaleta)
+make.adjoint(cm.zavaleta)
 }
 \keyword{graphs}

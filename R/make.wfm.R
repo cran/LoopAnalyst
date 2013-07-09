@@ -567,7 +567,8 @@ enumerate.SOSL <- function(MOSL,N) {
 						WFM[i,j] <- sum.path.x.C(CM,i,j,N)
 						}
 					else {
-						WFM[i,j] <- abs(sum.path.x.C(CM,i,j,N))						}
+						WFM[i,j] <- abs(sum.path.x.C(CM,i,j,N))
+						}
 				}
 			}
 		}
@@ -577,8 +578,12 @@ enumerate.SOSL <- function(MOSL,N) {
 		for (i in 1:N) {
 			cat(namerows[i])
 			for (j in 1:N) {
-					Sum <- sum.path.x.C(CM,i,j,N)
-					WFM[i,j] <- (df.dc*Sum)/F.N
+					if (sign) {
+						WFM[i,j] <- sum.path.x.C(CM,i,j,N)
+						}
+					else {
+						WFM[i,j] <- abs(sum.path.x.C(CM,i,j,N))
+						}
 					cat(" .")
 				}
 			cat("\n")

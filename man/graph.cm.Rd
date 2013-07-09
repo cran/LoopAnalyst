@@ -31,7 +31,7 @@ data(cm.levins)
 graph.cm(cm.levins, file="levins.dot")
 
 ## graph a community matrix
-data(cm.dambacher)
-graph.cm(cm.dambacher, file="dambacher.dot", color="color")
+data(cm.zavaleta)
+graph.cm(cm.zavaleta, file="zavaleta.dot", color="color")
 }
 \keyword{file}

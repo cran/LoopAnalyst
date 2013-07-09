@@ -24,7 +24,7 @@ A change in life expectancy matrix
 Alexis Dinno \url{http://www.doyenne.com/LoopAnalyst/}
 }
 \seealso{
-i\code{\link{make.cm}},\code{\link{make.cem}}.
+\code{\link{make.cm}},\code{\link{make.cem}}.
 }
 \examples{
 ## compute change in life expectancy matrix

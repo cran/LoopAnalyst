@@ -29,9 +29,9 @@ Alexis Dinno \url{http://www.doyenne.com/LoopAnalyst/}
 }
 \examples{
 ## compute community effect matrix, and note high prevalence of ambiguous predictions
-data(cm.dambacher)
-make.cem(cm.dambacher, out=TRUE)
-## compute weighted prediction matrix, and note disambiguation of the cem
-weighted.predictions(t(cm.dambacher))
+data(cm.zavaleta)
+make.cem(cm.zavaleta, out=TRUE)
+## compute weighted prediction matrix, and note disambiguation of part of the cem
+weighted.predictions(t(cm.zavaleta))
 }
 \keyword{graphs}

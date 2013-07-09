@@ -13,7 +13,7 @@ save.cm(CM, file)
 name of the file to save.}
 }
 \details{
-This function uses \code{\link{validate.cm}} and \code{\link{save}} to store a communty matrix object.
+This function uses \code{\link{validate.cm}} and \code{\link{save}} to store a community matrix object.
 }
 \author{
 Alexis Dinno \url{http://www.doyenne.com/LoopAnalyst/}

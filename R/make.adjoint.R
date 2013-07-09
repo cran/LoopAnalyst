@@ -549,8 +549,6 @@ enumerate.SOSL <- function(MOSL,N) {
 
 	N <- nrow(CM)
 	namerows <- rownames(CM)
-	F.N <- -1
-	df.dc <- 1
 	
 	Adjoint <- matrix(c(NA),N,N,dimnames=list(namerows,namerows))
 
@@ -567,8 +565,7 @@ enumerate.SOSL <- function(MOSL,N) {
 		for (i in 1:N) {
 			cat(namerows[i])
 			for (j in 1:N) {
-					Sum <- sum.path.x.C(CM,i,j,N)
-					Adjoint[i,j] <- (df.dc*Sum)/F.N
+					Adjoint[i,j] <- sum.path.x.C(CM,i,j,N)
 					cat(" .")
 				}
 			cat("\n")

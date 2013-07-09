@@ -1,9 +1,9 @@
 \name{submatrix}
 \docType{data}
 \alias{submatrix}
-\title{A Five-Variable Sub-Matrix of the First Five Variables of Dambacher's Matrix}
+\title{A Five-Variable Sub-Matrix of the Last Five Variables of Zavaleta's Matrix}
 \description{
-This dataset represents a subset of the causal relationships defining Dambacher's five-variable system. Specifically, it contains the first five variables of the dataset \code{cm.dambacher}.
+This dataset represents a subset of the causal relationships defining Zavaleta's five-variable system. Specifically, it contains the last five variables of the dataset \code{cm.zavaleta}.
 }
 \usage{data(submatrix)}
 \format{A 5 by 5 (-1, 0, 1) matrix.  The matrix is interpreted as the jth variable has the direct causal effect a[i,j] on i.}
