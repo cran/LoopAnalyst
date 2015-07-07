@@ -17,14 +17,13 @@ feedback <- function(C) {
 	 		}
 
 		# Does C contain only values = 1, 0 or -1?
-		for (i in 1:nrow(C)) {
-			for (j in 1:ncol(C)) {
-		 		if ( !( (C[i,j] == 1) | (C[i,j] == 0) | (C[i,j] == -1) ) ) {
-		 			stop("\nThe system must be a square matrix with elements \nof values of only 1, 0 and -1.")
-		 			}
-	 			}
-	 		}
-
+		rcC <- as.vector(C)
+		indexend <- length(rcC)
+		for (i in 1:indexend) {
+			if ( !( (rcC[i] == 1) | (rcC[i] == 0) | (rcC[i] == -1) ) ) {
+				stop("\nThe system must be a square matrix with elements \nof values of only 1, 0 and -1.")
+				}
+			}
 		# end validate.c
 		}
 

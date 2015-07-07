@@ -2,7 +2,7 @@
 \alias{make.cm}
 \title{Interactively Make a Community Matrix}
 \description{
-Make and validate a new community matrix by soliciting the number of variables, variable names and interactions between each.
+Make and validate a new community matrix by soliciting the number of varibles, variable names and interactions between each.
 }
 \usage{
 make.cm(n)

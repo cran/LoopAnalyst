@@ -10,6 +10,6 @@ This dataset represents the causal relationships amongst the four variables defi
 \references{
   Puccia, C. J. and Levins, R. (1986) \emph{Qualitative Modeling of Complex Systems: An Introduction to Loop Analysis and Time Averaging}. Cambridge: Harvard University Press.
 
-  Levins, R. and Schultz, B. B. (1996) Effects of density dependence, feedback and environmental sensitivity on correlations among predators, prey and plant resources: Models and practical implications. \emph{Journal of Animal Ecology}, \bold{65(6)},802-812
+Levins, R. and Schultz, B. B. (1996) Effects of density dependence, feedback and environmental sensitivity on correlations among predators, prey and plant resources: Models and practical implications. \emph{Journal of Animal Ecology}, \bold{65(6)},802-812
 }
 \keyword{datasets}

@@ -34,8 +34,8 @@ make.cem(cm.levins) -> cem.levins
 graph.cem(cem.levins, file="levins.dot", color="color")
 
 ## graph a community effect matrix
-data(cm.zavaleta)
-make.cem(cm.zavaleta) -> cem.zavaleta
-graph.cem(cem.zavaleta, file="zavaleta.dot", color="color")
+data(cm.dambacher)
+make.cem(cm.dambacher) -> cem.dambacher
+graph.cem(cem.dambacher, file="dambacher.dot", color="color")
 }
 \keyword{file}

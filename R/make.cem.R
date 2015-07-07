@@ -312,7 +312,7 @@ enumerate.SOSL <- function(MOSL,N) {
 			N1 <- length(MOSL)
 	
 			Term <- MOSL
-			for (i in 1:length(MOSL)) {
+			for (i in 1:N1) {
 				for (j in 1:length(MOSL[[i]])) {
 					Term[[i]][[j]] <- c(rep(0,length(MOSL[[i]][[j]])))
 					}
@@ -323,7 +323,7 @@ enumerate.SOSL <- function(MOSL,N) {
 			# end initialize.term()
 			}
 
-	   N.mosl <- length(MOSL)
+	    N.mosl <- length(MOSL)
 		Term <- initialize.term(MOSL)
 		PLOS <- NULL
 		SOSL <- NULL
