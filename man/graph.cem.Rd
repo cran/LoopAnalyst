@@ -17,12 +17,12 @@ graph.cem(CEM, file, color="bw")
 \section{comments}{The representation of loop analytic predictions in graph form is an emerging practice. Feedback and ideas are welcome, and I am amenable to implementing them in future versions of LoopAnalyst. \code{graph.cem} does not currently work with \code{weighted.predictions} output.
 }
 \references{
-  Puccia, C. J. and Levins, R. (1986) \emph{Qualitative Modeling of Complex Systems: An Introduction to Loop Analysis and Time Averaging}. Cambridge: Harvard University Press.
+ Gansner, E., Koutsofios, E. and North, S. (2002) \href{http://www.graphviz.org/pdf/dotguide.pdf}{\emph{Drawing graphs with dot}}. \url{http://www.graphviz.org}
 
-  Gansner, E., Koutsofios, E. and North, S. (2002) \emph{Drawing graphs with dot}. \url{http://www.graphviz.org}
+ Puccia, C. J. and Levins, R. (1986) \href{http://www.hup.harvard.edu/catalog.php?isbn=9780674435070}{\emph{Qualitative Modeling of Complex Systems: An Introduction to Loop Analysis and Time Averaging}}. Cambridge: Harvard University Press.
 }
 \author{
-Alexis Dinno \url{http://www.doyenne.com/LoopAnalyst/}
+Alexis Dinno \url{https://www.alexisdinno.com/LoopAnalyst/}
 }
 \seealso{
 \code{\link{make.cem}}.

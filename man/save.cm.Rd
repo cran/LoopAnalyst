@@ -16,7 +16,7 @@ name of the file to save.}
 This function uses \code{\link{validate.cm}} and \code{\link{save}} to store a communty matrix object.
 }
 \author{
-Alexis Dinno \url{http://www.doyenne.com/LoopAnalyst/}
+Alexis Dinno \url{https://www.alexisdinno.com/LoopAnalyst/}
 }
 \seealso{
 \code{\link{load}}.

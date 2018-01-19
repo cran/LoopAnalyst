@@ -19,12 +19,12 @@ NOTE: weighted feedback, adjoint and absolute feeback matrices are transposed re
 The absolute feedback matrix for a community matrix
 }
 \references{
-  Dambacher, J. M., et al. (2003) Qualitative stability and ambiguity in model ecosystems. \emph{The American Naturalist}, \bold{161(6)},876--888
+ Dambacher, J. M. and Li, H. W. and Rossignol, P. A. (2002) \href{https://www.jstor.org/stable/3071950?seq=1#page_scan_tab_contents}{Relevance of community structure in assessing indeterminacy of ecological predictions}. \emph{Ecology}, \bold{83(5)},1372--1385.
 
-  Dambacher, J. M. and Li, H. W. and Rossignol, P. A. (2002) Relevance of community structure in assessing indeterminacy of ecological predictions. \emph{Ecology}, \bold{83(5)},1372--1385
+ Dambacher, J. M., et al. (2003) \href{http://www.journals.uchicago.edu/doi/full/10.1086/367590}{Qualitative stability and ambiguity in model ecosystems}. \emph{The American Naturalist}, \bold{161(6)},876--888.
 }
 \author{
-Alexis Dinno \url{http://www.doyenne.com/LoopAnalyst/}
+Alexis Dinno \url{https://www.alexisdinno.com/LoopAnalyst/}
 }
 \seealso{
 \code{\link{make.cem}, \link{make.wfm}, \link{make.adjoint} and \link{weighted.predictions}}.

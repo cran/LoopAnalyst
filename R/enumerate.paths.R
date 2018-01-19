@@ -49,15 +49,15 @@ enumerate.paths <- function(CM,i,j) {
 	make.ENVY <- function() {
 
 		ENVY <- NULL
-		for (x in 1:N) {
-			if (!(identical((CM[x,LOVE[length(LOVE)]]),0))) {
-				if (identical(Term[x,LOVE[length(LOVE)]],0)) {
-					ENVY <- c(ENVY,x)
+		for (x in 1:N) {											# Loop aver all elements
+			if (!(identical((CM[x,LOVE[length(LOVE)]]),0))) {	# If CM[x, LOVE[last]] != 0
+				if (identical(Term[x,LOVE[length(LOVE)]],0)) {	# If Term[x, LOVE[last]] == 0
+					ENVY <- c(ENVY,x)							# Append x to elements not visited yet
 					}
 				}
 			}
-		for (x in LOVE) {
-			ENVY <- ENVY[ENVY != x]
+		for (x in LOVE) {										# Loop over all elements in LOVE
+			ENVY <- ENVY[ENVY != x]								# Remove that element from ENVY
 			}
 
 		return(ENVY)

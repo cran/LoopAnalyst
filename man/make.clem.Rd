@@ -16,12 +16,12 @@ The supplied matrix is validated as a community matrix, and a table of predicted
 A change in life expectancy matrix
 }
 \references{
-  Puccia, C. J. and Levins, R. (1986) \emph{Qualitative Modeling of Complex Systems: An Introduction to Loop Analysis and Time Averaging}. Cambridge: Harvard University Press.
-
-  Dambacher, J. M., R. Levins and P. A. Rossignol. (2005) Life expectancy change in perturbed communities: Derivation and qualitative analysis. \emph{Mathematical Biosciences} \bold{197},1-14
+ Dambacher, J. M., R. Levins and P. A. Rossignol. (2005) \href{https://doi.org/10.1016/j.mbs.2005.06.001}{Life expectancy change in perturbed communities: Derivation and qualitative analysis}. \emph{Mathematical Biosciences} \bold{197},1--14.
+ 
+ Puccia, C. J. and Levins, R. (1986) \href{http://www.hup.harvard.edu/catalog.php?isbn=9780674435070}{\emph{Qualitative Modeling of Complex Systems: An Introduction to Loop Analysis and Time Averaging}}. Cambridge: Harvard University Press.
 }
 \author{
-Alexis Dinno \url{http://www.doyenne.com/LoopAnalyst/}
+Alexis Dinno \url{https://www.alexisdinno.com/LoopAnalyst/}
 }
 \seealso{
 i\code{\link{make.cm}},\code{\link{make.cem}}.

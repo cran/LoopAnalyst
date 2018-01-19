@@ -14,10 +14,10 @@ validate.cem(CEM)
 A community effect matrix is deemed valid if it is a square matrix, with no missing values, where each element has the value NA, -1, 0 or 1.
 }
 \references{
- Puccia, C. J. and Levins, R. (1986) \emph{Qualitative Modeling of Complex Systems: An Introduction to Loop Analysis and Time Averaging}. Cambridge: Harvard University Press.
+ Puccia, C. J. and Levins, R. (1986) \href{http://www.hup.harvard.edu/catalog.php?isbn=9780674435070}{\emph{Qualitative Modeling of Complex Systems: An Introduction to Loop Analysis and Time Averaging}}. Cambridge: Harvard University Press.
 }
 \author{
-Alexis Dinno \url{http://www.doyenne.com/LoopAnalyst/}
+Alexis Dinno \url{https://www.alexisdinno.com/LoopAnalyst/}
 }
 \seealso{
 \code{\link{make.cem}}.
