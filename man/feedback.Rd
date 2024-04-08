@@ -17,10 +17,18 @@ The supplied matrix is validated as a square (-1, 0, 1) matrix, and the sign-cor
 -1, 0, 1, or \code{NA}
 }
 \references{
- Puccia, C. J. and Levins, R. (1986) \href{http://www.hup.harvard.edu/catalog.php?isbn=9780674435070}{\emph{Qualitative Modeling of Complex Systems: An Introduction to Loop Analysis and Time Averaging}}. Cambridge: Harvard University Press.
+ Puccia, C. J. and Levins, R. (1986) \emph{Qualitative Modeling of Complex Systems: An Introduction to Loop Analysis and Time Averaging}. Cambridge: Harvard University Press. <\doi{10.4159/harvard.9780674435070}>.
  }
 \author{
-Alexis Dinno \url{https://www.alexisdinno.com/LoopAnalyst/}
+Alexis Dinno (\email{alexis.dinno@pdx.edu})
+
+Please contact me with any questions, bug reports or suggestions for improvement.  Fixing bugs will be facilitated by sending along:
+\tabular{rl}{
+[1] \tab a copy of your relevant R data file (de-labeled or anonymized is fine),\cr
+[2] \tab a copy of the command syntax used, and\cr
+[3] \tab a copy of the exact output of the command.\cr
+}
+\url{https://alexisdinno.com/LoopAnalyst/}
 }
 \seealso{
 \code{\link{make.cm}}.

@@ -17,25 +17,33 @@ graph.cem(CEM, file, color="bw")
 \section{comments}{The representation of loop analytic predictions in graph form is an emerging practice. Feedback and ideas are welcome, and I am amenable to implementing them in future versions of LoopAnalyst. \code{graph.cem} does not currently work with \code{weighted.predictions} output.
 }
 \references{
- Gansner, E., Koutsofios, E. and North, S. (2002) \href{http://www.graphviz.org/pdf/dotguide.pdf}{\emph{Drawing graphs with dot}}. \url{http://www.graphviz.org}
+ Gansner, E., Koutsofios, E. and North, S. (2002) \href{https://www.graphviz.org/pdf/dotguide.pdf}{\emph{Drawing graphs with dot}}. \url{https://www.graphviz.org}
 
- Puccia, C. J. and Levins, R. (1986) \href{http://www.hup.harvard.edu/catalog.php?isbn=9780674435070}{\emph{Qualitative Modeling of Complex Systems: An Introduction to Loop Analysis and Time Averaging}}. Cambridge: Harvard University Press.
+ Puccia, C. J. and Levins, R. (1986) \emph{Qualitative Modeling of Complex Systems: An Introduction to Loop Analysis and Time Averaging}. Cambridge: Harvard University Press. <\doi{10.4159/harvard.9780674435070}>.
 }
 \author{
-Alexis Dinno \url{https://www.alexisdinno.com/LoopAnalyst/}
+Alexis Dinno (\email{alexis.dinno@pdx.edu})
+
+Please contact me with any questions, bug reports or suggestions for improvement.  Fixing bugs will be facilitated by sending along:
+\tabular{rl}{
+[1] \tab a copy of your relevant R data file (de-labeled or anonymized is fine),\cr
+[2] \tab a copy of the command syntax used, and\cr
+[3] \tab a copy of the exact output of the command.\cr
+}
+\url{https://alexisdinno.com/LoopAnalyst/}
 }
 \seealso{
 \code{\link{make.cem}}.
 }
 \examples{
-## graph a community effect matrix
+## graph the community effect matrix of cm.levins 
 data(cm.levins)
-make.cem(cm.levins) -> cem.levins
-graph.cem(cem.levins, file="levins.dot", color="color")
+cem.levins <- make.cem(cm.levins) \dontshow{ currentdir <- getwd(); setwd(tempdir())}
+graph.cem(cem.levins, file="levins.dot", color="color") \dontshow{ file.remove('levins.dot'); setwd(currentdir)}
 
-## graph a community effect matrix
+## graph the community effect matrix of cm.dambacher 
 data(cm.dambacher)
-make.cem(cm.dambacher) -> cem.dambacher
-graph.cem(cem.dambacher, file="dambacher.dot", color="color")
+cem.dambacher <- make.cem(cm.dambacher) \dontshow{ currentdir <- getwd(); setwd(tempdir())}
+graph.cem(cem.dambacher, file="dambacher.dot", color="color") \dontshow{ file.remove('dambacher.dot'); setwd(currentdir)}
 }
 \keyword{file}
