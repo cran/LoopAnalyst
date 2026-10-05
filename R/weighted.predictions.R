@@ -1,6 +1,10 @@
 # weighted.predictions returns a community effect matrix with ambiguous terms 
-# resolved using weighted feedback where possible. It takes:
-# CM: a valid community effect matrix
+# resolved using weighted feedback where possible. 
+# It takes:
+#   CM: a valid community effect matrix
+#   status: logical, indicating whether to communicate progress
+# Author: Alexis Dinno
+# Date: September 28, 2026
 
 weighted.predictions <- function(CM, status=FALSE) {
 
@@ -18,8 +22,8 @@ weighted.predictions <- function(CM, status=FALSE) {
 
 			ENVY <- NULL
 			for (x in 1:N) {
-				if (!(identical((CM[x,LOVE[length(LOVE)]]),0))) {
-					if (identical(Term[x,LOVE[length(LOVE)]],0)) {
+				if (!(identical(as.integer(CM[x,LOVE[length(LOVE)]]),as.integer(0)))) {
+					if (identical(as.integer(Term[x,LOVE[length(LOVE)]]),as.integer(0))) {
 						ENVY <- c(ENVY,x)
 						}
 					}
@@ -113,7 +117,7 @@ weighted.predictions <- function(CM, status=FALSE) {
 		N <- nrow(CM)
 
 		 # take care of the simple case of i = j
-		 if (identical(i,j)) {
+		 if (identical(as.integer(i),as.integer(j))) {
 		 		LOP <- list(c(i,j))
 		 		return(LOP)
 		   	}
@@ -445,6 +449,7 @@ enumerate.SOSL <- function(MOSL,N) {
 # sosl.prod returns the sign product of a set of spanning loops
 # It takes:
 # SOSL: a single set of spanning loop(s)
+# Date: September 25, 2026
 
 	sosl.prod <- function(C,SOSL) {
 
@@ -568,14 +573,13 @@ enumerate.SOSL <- function(MOSL,N) {
 		}
 
 	if (status) {
-		cat(" ",namerows,"\n")
 		for (i in 1:N) {
-			cat(namerows[i])
+			supcat(pad.left(namerows[i], max(nchar(namerows))))
 			for (j in 1:N) {
 					WFM[i,j] <- sum.path.x.C(CM,i,j,N)
-					cat(" .")
+					supcat(" .")
 				}
-			cat("\n")
+			supcat("\n")
 			}
 		}
 	
@@ -610,7 +614,7 @@ enumerate.SOSL <- function(MOSL,N) {
 				}
 			}
 		}
-	print(WFM,quote=FALSE)
+	supprint(WFM,quote=FALSE)
 	
 	# end weighted.predictions()
 	}

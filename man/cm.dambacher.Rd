@@ -1,9 +1,9 @@
 \name{cm.dambacher}
 \docType{data}
 \alias{cm.dambacher}
-\title{A Ten-Variable Trophic Model Of Danish Shallow Lakes}
+\title{A Five-Variable Trophic Model Of Plankton, Bacteria, and Protozoa}
 \description{
-This dataset represents the causal relationships amongst the ten variables defined by Dambacher's 2002 article in figure 6, page 1381.
+This dataset represents the causal relationships amongst the five variables defined by Dambacher's 2002 article in Figure 1, page 1377.
 }
 \usage{data(cm.dambacher)}
 \format{A 10 by 10 (-1, 0, 1) matrix with each element having at least one parent and at least one child.  The matrix is interpreted as the jth variable has the direct causal effect a[i,j] on variable i.}

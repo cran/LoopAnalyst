@@ -1,5 +1,8 @@
-# feedback returns the adjusted sum of products of SOSLs. It takes:
-# C: the complimentary subsystem of a path through a CM
+# feedback: returns the adjusted sum of products of SOSLs
+# It takes:
+#   C: matrix representing the complimentary subsystem of a path through a CM
+# Author: Alexis Dinno
+# Date: September 29, 2026
 
 feedback <- function(C) {
 
@@ -12,8 +15,8 @@ feedback <- function(C) {
 	validate.c <- function(C) {
 
 		# Is C a matrix? a square matrix?
- 		if (!(is.matrix(C)) | !(identical( nrow(C), ncol(C) ) ) ) {
-		 	stop("\nThe system must be specified by a square matrix with elements \nof values of only 1, 0 and -1.")
+ 		if (!(is.matrix(C)) | nrow(C) != ncol(C) ) {
+		 	rlang::abort("The system must be specified by a square matrix with elements of values of only 1, 0 and -1.")
 	 		}
 
 		# Does C contain only values = 1, 0 or -1?
@@ -21,7 +24,7 @@ feedback <- function(C) {
 		indexend <- length(rcC)
 		for (i in 1:indexend) {
 			if ( !( (rcC[i] == 1) | (rcC[i] == 0) | (rcC[i] == -1) ) ) {
-				stop("\nThe system must be a square matrix with elements \nof values of only 1, 0 and -1.")
+				rlang::abort("The system must be a square matrix with elements of values of only 1, 0 and -1.")
 				}
 			}
 		# end validate.c
@@ -38,9 +41,9 @@ feedback <- function(C) {
 			if (length(loop) >1 ) {
 				for (edge in 1:(length(loop))) {
 					if (edge < length(loop)) {
-						lprod <- lprod * C[loop[edge],loop[edge+1]]
+						lprod <- lprod * C[loop[edge+1],loop[edge]]
 						} else {
-							lprod <- lprod * C[loop[edge],loop[1]]
+							lprod <- lprod * C[loop[1],loop[edge]]
 						 	}
 					 }
 				}

@@ -1,10 +1,13 @@
 # graph.cem produces a file in the dot language representing a 
 # Community Effect Matrix. Such graphs are sometimes called "prediction scenarios"
 # It takes as it's arguments:
-# CEM: a Community Matrix (i.e. a signed digraph)
-# file: a valid filename with path
+#   CEM: a Community Matrix (i.e. a signed digraph)
+#   file: a valid filename with path
+#   color: select whether to graph the system bw, color, or greyscale
+# Author: Alexis Dinno
+# Date: September 28, 2026
 
-graph.cem <- function(CEM, file = stop("'file' must be specified"), color="bw") {
+graph.cem <- function(CEM, file = rlang::abort("'file' must be specified"), color="bw") {
 
 # validate.cem.names takes a Community Effect Matrix (CEM) and returns a vector 
 # CEM.Name.Val(a,b) where a has one of the values:
@@ -42,7 +45,7 @@ graph.cem <- function(CEM, file = stop("'file' must be specified"), color="bw") 
 		    identical(CEM.Name.Val[2],3) & 
 		    !identical(rownames(CEM),colnames(CEM)) 
 		   ) {
-		   	warning("\nParameter names are different for rows and columns!\nUsing row names for parameter names.")
+		   	rlang::warn("Parameter names are different for rows and columns! Using row names for parameter names.")
 	   		}
 		
 		return(CEM.Name.Val)
@@ -97,7 +100,7 @@ graph.cem <- function(CEM, file = stop("'file' must be specified"), color="bw") 
 
 	# Output if there are no variable names
 	if ( !identical(CEM.Name.Val[1],3) & !identical(CEM.Name.Val[2],3)) {
-	   	sink(file = file)
+	 sink(file = file)
 		file.CEM <- cat("digraph G {\ngraph [bgcolor = \"transparent\", size = \"18!,18!\", nodesep=\"1\", ranksep=\"1\", rankdir=\"LR\"];\nnode [fixedsize=true, fontname=\"Sans\", fontsize=\"75\", shape=circle, height=\"2\", width=\"2\", style=\"setlinewidth(4)\"];\nedge [style=\"setlinewidth(3)\", arrowsize=3];\n",sep="")
 		for (j in 1:N) {
 			file.CEM <- cat("\t P",j," [color=\"",Colors[j],"\"];\n", sep = "")

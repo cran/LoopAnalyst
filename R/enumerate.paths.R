@@ -1,26 +1,30 @@
-# enumerate.paths returns a list of paths (LOP) takes as it's arguments:
+# enumerate.paths: returns a list of paths (LOP)
+# It takes:
 #   CM: a Community Matrix
 #   i:  a starting parameter
 #   j:  an ending parameter
-enumerate.paths <- function(CM,i,j) {
+# Author: Alexis Dinno
+# Date: September 28, 2026
+
+enumerate.paths <- function(CM, i, j) {
 
 	if (!is.numeric(i)) {
 		if (is.na(match(i,rownames(CM)))) {
-			stop("\nvalue \"", i, "\" of i is not the name of a parameter in the community matrix!\n")
+			rlang::abort(paste0("Value \"", i, "\" of i is not the name of a parameter in the community matrix!"))
 			}
 		match(i, rownames(CM)) -> i
 		}
 		
 	if (!is.numeric(j)) {
 		if (is.na(match(j,rownames(CM)))) {
-			stop("\nvalue \"", j, "\" of j is not the name of a parameter in the community matrix!\n")
+			rlang::abort(paste0("Value \"", j, "\" of j is not the name of a parameter in the community matrix!"))
 			}
 		match(j, rownames(CM)) -> j
 		}
 
 	validate.i.j <- function(i,j,N) {
 		if ( !(floor(i)==i) | !(floor(j)==j) | i > N | j > N | i < 1 | j < 1) {
-			stop("\ni and j must be integer values between 1 and ", N, ", or the names of the \ncommunity matrix parameters!")
+			rlang::abort(paste0("i and j must be integer values between 1 and ", N, ", or the names of the community matrix parameters!"))
 			}
 		# end validate.i.j
 		}
@@ -50,8 +54,8 @@ enumerate.paths <- function(CM,i,j) {
 
 		ENVY <- NULL
 		for (x in 1:N) {											# Loop aver all elements
-			if (!(identical((CM[x,LOVE[length(LOVE)]]),0))) {	# If CM[x, LOVE[last]] != 0
-				if (identical(Term[x,LOVE[length(LOVE)]],0)) {	# If Term[x, LOVE[last]] == 0
+			if (!(identical(as.integer(CM[x,LOVE[length(LOVE)]]),as.integer(0)))) {	# If CM[x, LOVE[last]] != 0
+				if (identical(as.integer(Term[x,LOVE[length(LOVE)]]),as.integer(0))) {	# If Term[x, LOVE[last]] == 0
 					ENVY <- c(ENVY,x)							# Append x to elements not visited yet
 					}
 				}
@@ -146,7 +150,7 @@ enumerate.paths <- function(CM,i,j) {
 	validate.i.j(i,j,N)
 
 	 # take care of the simple case of i = j
-	 if (identical(i,j)) {
+	 if (identical(as.integer(i),as.integer(j))) {
 	 		LOP <- list(c(i,j))
 	 		return(LOP)
 	   	}

@@ -3,10 +3,14 @@
 #   has only elements of -1, 0 or 1, 
 #   has at least two parameters,
 #   with at least one direct or indirect path from each variable to all other variables, and
-#   isnot fully specified. 
-# It produces an error if the community matrix is 
-# invalid by these tests, and returns nothing otherwise. It takes:
-# CM: a potential community matrix
+#   is not fully specified. 
+# It produces an error if the community matrix is invalid by these tests, 
+#   and returns nothing otherwise. 
+# It takes:
+#   CM: a candidate community matrix
+# Author: Alexis Dinno
+# Date: September 28, 2026
+
 validate.cm <- function(CM) {
 
 	is.isolated <- function(CM) {
@@ -40,8 +44,8 @@ validate.cm <- function(CM) {
 
 				ENVY <- NULL
 				for (x in 1:N) {
-					if (!(identical((CM[LOVE[length(LOVE)],x]),0))) {
-						if (identical(Term[LOVE[length(LOVE)],x],0)) {
+					if (!(identical(as.integer(CM[LOVE[length(LOVE)],x]),as.integer(0)))) {
+						if (identical(as.integer(Term[LOVE[length(LOVE)],x]),as.integer(0))) {
 							ENVY <- c(ENVY,x)
 							}
 						}
@@ -158,34 +162,34 @@ validate.cm <- function(CM) {
 
 
 	# Is CM a matrix? a square matrix?
- 	if (!(is.matrix(CM)) | !(identical( nrow(CM), ncol(CM) ) ) ) {
-	 	stop("\nA Community Matrix must be a square matrix with elements \nof values of only 1, 0 and -1.")
+ 	if (!(is.matrix(CM)) | nrow(CM) != ncol(CM) ) {
+	 	rlang::abort("A Community Matrix must be a square matrix with elements of values of only 1, 0 and -1.")
 	 	}
 
 	# Is CM big enough?
 	if (nrow(CM) == 1) {
-	 	stop("\nA Community Matrix must have two or more parameters.")
+	 	rlang::abort("A Community Matrix must have two or more parameters.")
 	 	}
 
 	# Does CM contain only values = 1, 0 or -1?
 	for (i in 1:nrow(CM)) {
 		for (j in 1:ncol(CM)) {
 	 		if ( !( (CM[i,j] == 1) | (CM[i,j] == 0) | (CM[i,j] == -1) ) ) {
-	 			stop("\nA Community Matrix must be a square matrix with elements \nof values of only 1, 0 and -1.")
+	 			rlang::abort("A Community Matrix must be a square matrix with elements of values of only 1, 0 and -1.")
 	 			}
 	 		}
 	 	}
 
 	# Is CM matrix is fully specified?
 	if (!(0 %in% CM)) {
-		stop("\nA fully connected Community Matrix is not analyzable via loop analysis.")
+		rlang::abort("A fully connected Community Matrix is not analyzable via loop analysis.")
 		}
 		
 	N <- nrow(CM)
 
 	# Is a subsystem of the Community Matrix isolated?
 	if (is.isolated(CM)) {
-		stop("\nTwo or more variables in the system are isolated from one another.")
+		rlang::abort("Two or more variables in the system are isolated from one another.")
 		}
 
 	# end validate.cm

@@ -1,9 +1,12 @@
-# graph.cm produces a file in the dot language representing a 
-# Community Matrix. It takes as it's arguments:
-# CM: a Community Matrix (i.e. a signed digraph)
-# file: a valid filename with path
+# graph.cm: produces a file in the dot language representing a Community Matrix
+#   It takes:
+#   CM: a Community Matrix (i.e. a signed digraph)
+#   file: a valid filename with path
+#   color: select whether to graph the system bw, color, or greyscale
+# Author: Alexis Dinno
+# Date: September 28, 2026
 
-graph.cm <- function(CM, file = stop("'file' must be specified"), color="bw") {
+graph.cm <- function(CM, file = rlang::abort("'file' must be specified"), color="bw") {
 
 # validate.cm.names takes a Community Matrix (CM) and returns a vector 
 # CM.Name.Val(a,b) where a has one of the values:
@@ -41,7 +44,7 @@ graph.cm <- function(CM, file = stop("'file' must be specified"), color="bw") {
 		    identical(CM.Name.Val[2],3) & 
 		    !identical(rownames(CM),colnames(CM)) 
 		   ) {
-		   	warning("\nParameter names are different for rows and columns!\nUsing row names for parameter names.")
+		   	rlang::warn("Parameter names are different for rows and columns! Using row names for parameter names.")
 	   		}
 		
 		return(CM.Name.Val)

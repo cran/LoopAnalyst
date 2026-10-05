@@ -1,6 +1,8 @@
-# out.cm prints a community matrix or community effect matrix using the
-# common format. It takes:
+# out.cm: prints a community matrix or community effect matrix using the
+#   common format. It takes:
 # M: a community matrix or community effect matrix
+# Author: Alexis Dinno
+# Date: September 28, 2026
 
 out.cm <- function(M) {
 	
@@ -18,7 +20,7 @@ out.cm <- function(M) {
 				}
 			}
 		}
-	print(M,quote=FALSE)
+	supprint(M,quote=FALSE)
 	
 	# end out.cm()
 	}

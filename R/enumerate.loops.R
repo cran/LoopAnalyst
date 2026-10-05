@@ -1,6 +1,8 @@
 # enumerate.loops returns a list of simple loops (cycles) in CM. It 
 # takes as arguments:
 # CM: a (-1, 0, 1) matrix
+# Date: September 25, 2026
+
 enumerate.loops <- function(CM) {
 
 # is.loop tests that a list of visited elements begins at and 
@@ -21,8 +23,8 @@ enumerate.loops <- function(CM) {
 	make.ENVY <- function() {
 		ENVY <- NULL
 		for (z in 1:N) {
-			if (!(identical((CM[z,LOVE[length(LOVE)]]),0))) {
-				if (identical(Term[z,LOVE[length(LOVE)]],0)) {
+			if (!(identical(as.integer(CM[z,LOVE[length(LOVE)]]),as.integer(0)))) {
+				if (identical(as.integer(Term[z,LOVE[length(LOVE)]]),as.integer(0))) {
 					ENVY <- c(ENVY,z)
 					}
 				}
@@ -116,7 +118,7 @@ enumerate.loops <- function(CM) {
 			}
 		}
 
-	if ( !identical(CM[N,N],0) ) {
+	if ( !identical(as.integer(CM[N,N]),as.integer(0)) ) {
 		LOL <- c( LOL,list( c(N,N) ) )
 		}
 

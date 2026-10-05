@@ -1,5 +1,9 @@
-# make.T returns an absolute feedback matrix. It takes:
-# CM: a valid community effect matrix
+# make.T: returns an absolute feedback matrix
+# It takes:
+#   CM: a valid community effect matrix
+#   status: logical, indicating whether to communicate progress
+# Author: Alexis Dinno
+# Date: September 28, 2026
 
 make.T <- function(CM, status=FALSE) {
 
@@ -17,8 +21,8 @@ make.T <- function(CM, status=FALSE) {
 
 			ENVY <- NULL
 			for (x in 1:N) {
-				if (!(identical((CM[LOVE[length(LOVE)],x]),0))) {
-					if (identical(Term[LOVE[length(LOVE)],x],0)) {
+				if (!(identical(as.integer(CM[LOVE[length(LOVE)],x]),as.integer(0)))) {
+					if (identical(as.integer(Term[LOVE[length(LOVE)],x]),as.integer(0))) {
 						ENVY <- c(ENVY,x)
 						}
 					}
@@ -112,7 +116,7 @@ make.T <- function(CM, status=FALSE) {
 		N <- nrow(CM)
 
 		 # take care of the simple case of i = j
-		 if (identical(i,j)) {
+		 if (identical(as.integer(i),as.integer(j))) {
 		 		LOP <- list(c(i,j))
 		 		return(LOP)
 		   	}
@@ -284,7 +288,7 @@ enumerate.SOSL <- function(MOSL,N) {
 			# end initialize.term()
 			}
 
-	   N.mosl <- length(MOSL)
+	 N.mosl <- length(MOSL)
 		Term <- initialize.term(MOSL)
 		PLOS <- NULL
 		SOSL <- NULL
@@ -449,9 +453,9 @@ enumerate.SOSL <- function(MOSL,N) {
 			if (length(loop) >1 ) {
 				for (edge in 1:(length(loop))) {
 					if (edge < length(loop)) {
-						lprod <- lprod * C[loop[edge],loop[edge+1]]
+						lprod <- lprod * C[loop[edge+1],loop[edge]]
 						} else {
-							lprod <- lprod * C[loop[edge],loop[1]]
+							lprod <- lprod * C[loop[1],loop[edge]]
 						 	}
 					 }
 				}
@@ -530,14 +534,13 @@ enumerate.SOSL <- function(MOSL,N) {
 		}
 
 	if (status) {
-		cat(" ",namerows,"\n")
 		for (i in 1:N) {
-			cat(namerows[i])
+			supcat(pad.left(namerows[i], max(nchar(namerows))))
 			for (j in 1:N) {
 					T[i,j] <- sum.path.x.C(CM,i,j,N)
-					cat(" .")
+					supcat(" .")
 				}
-			cat("\n")
+					supcat("\n")
 			}
 		}
 	

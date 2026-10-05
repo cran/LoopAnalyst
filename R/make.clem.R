@@ -1,3 +1,10 @@
+# make.clem: make and return a change in life expectancy matrix
+# It takes:
+#   CM: a community matrix
+#   status: logical, indicating whether to communicate progress
+# Author: Alexis Dinno
+# Date: September 28, 2026
+
 make.clem <- function(CM, status=FALSE) {
 	# Make births matrix
 	CM.B <- CM
@@ -42,6 +49,6 @@ make.clem <- function(CM, status=FALSE) {
 
 	dimnames(CLEM)[[2]] <- paste(" ",dimnames(CLEM)[[2]]," ",sep="")
 
-	print(CLEM, quote=FALSE)
+	supprint(CLEM, quote=FALSE)
 	
 	}

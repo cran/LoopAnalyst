@@ -1,10 +1,12 @@
 # cem.corr() produces perturbation correlation tables from a community effect
 # matrix. It takes:
 # CEM: a community effect matrix
+# Author: Alexis Dinno
+# Date: September 28, 2026
 
 
 # check for version compatibility and notify user of version incompatibility
-# and let them know i am ammenable to making back-compatible revisions.
+# and let them know i am amenable to making back-compatible revisions.
 cem.corr <- function(CEM) {
 
 
@@ -35,8 +37,8 @@ cem.corr <- function(CEM) {
 						}
 					}
 				}
-			cat("\nInput to:", parameter.names[corr],"\n")
-			print(M[[corr]],quote=FALSE)
+   rlang::inform(message=paste0("\nInput to:", parameter.names[corr],"\n"))
+			supprint(M[[corr]], quote=FALSE)
 			}
 	
 		# end out.cem.corr()
@@ -50,7 +52,8 @@ cem.corr <- function(CEM) {
 
 	# validate that the matrix is square
 	if (N != ncol(CEM)) {
-		stop("\nsupplied matrix is not square; community effect matrix expected!\n")
+	 not.square.matrix.error.message <- "Supplied matrix is not square; community effect matrix expected!"
+		rlang::abort(not.square.matrix.error.message)
 		}
 
 	# validate that the matrix contains elements that are one of 1, 0, -1 or NA
@@ -58,7 +61,8 @@ cem.corr <- function(CEM) {
 		for (j in 1:N) {
 			a.ij <- CEM[i,j]
 			if ( !( (1 == abs(a.ij)) | (0 == a.ij) | (is.na(a.ij)) ) ) {
-				stop("\nSupplied matrix has at least one invalid element (i.e. \nnot 1, 0, -1 or NA); community effect matrix expected!\n")
+			 invalid.element.error.message <- "Supplied matrix has at least one invalid element (i.e. not 1, 0, -1 or NA); community effect matrix expected!"
+			 rlang::abort(invalid.element.error.message)
 				}
 			}
 		}

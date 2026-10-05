@@ -1,5 +1,13 @@
-# make.wfm returns a weighted feedback matrix. It takes:
-# CM: a valid community effect matrix
+# make.wfm: returns a weighted feedback matrix
+# It takes:
+#   CM: a valid community effect matrix
+#   status: logical, indicating whether to communicate progress
+#   digits: integer indicating precision for elements in the weighted feedback 
+#     matrix.
+#   sign: logical indicating output provided as the signed value of the adjoint 
+#     matrix elements divided by the absolute feedback matrix elements. 
+# Author: Alexis Dinno
+# Date: September 28, 2026
 
 make.wfm <- function(CM, status=FALSE, digits=1, sign=FALSE) {
 
@@ -17,8 +25,8 @@ make.wfm <- function(CM, status=FALSE, digits=1, sign=FALSE) {
 
 			ENVY <- NULL
 			for (x in 1:N) {
-				if (!(identical((CM[x,LOVE[length(LOVE)]]),0))) {
-					if (identical(Term[x,LOVE[length(LOVE)]],0)) {
+				if (!(identical(as.integer(CM[x,LOVE[length(LOVE)]]),as.integer(0)))) {
+					if (identical(as.integer(Term[x,LOVE[length(LOVE)]]),as.integer(0))) {
 						ENVY <- c(ENVY,x)
 						}
 					}
@@ -112,7 +120,7 @@ make.wfm <- function(CM, status=FALSE, digits=1, sign=FALSE) {
 		N <- nrow(CM)
 
 		 # take care of the simple case of i = j
-		 if (identical(i,j)) {
+		 if (identical(as.integer(i),as.integer(j))) {
 		 		LOP <- list(c(i,j))
 		 		return(LOP)
 		   	}
@@ -574,9 +582,8 @@ enumerate.SOSL <- function(MOSL,N) {
 		}
 
 	if (status) {
-		cat(" ",namerows,"\n")
 		for (i in 1:N) {
-			cat(namerows[i])
+			supcat(pad.left(namerows[i], max(nchar(namerows))))
 			for (j in 1:N) {
 					if (sign) {
 						WFM[i,j] <- sum.path.x.C(CM,i,j,N)
@@ -584,9 +591,9 @@ enumerate.SOSL <- function(MOSL,N) {
 					else {
 						WFM[i,j] <- abs(sum.path.x.C(CM,i,j,N))
 						}
-					cat(" .")
+					supcat(" .")
 				}
-			cat("\n")
+			supcat("\n")
 			}
 		}
 	

@@ -1,10 +1,25 @@
 # Default NAMESPACE created by R
 # Remove the previous line if you edit this file
 
-# Export all names
-exportPattern(".")
+# Export only these specific names (do not export helper functions)
+export("cem.corr")
+export("enumerate.loops")
+export("enumerate.paths")
+export("feedback")
+export("graph.cem")
+export("graph.cm")
+export("make.adjoint")
+export("make.cem")
+export("make.clem")
+export("make.cm")
+export("make.T")
+export("make.wfm")
+export("out.cm")
+export("save.cm")
+export("validate.cem")
+export("validate.cm")
+export("weighted.predictions")
 
 # Import all packages listed as Imports or Depends
-import(
-  nlme
-)
+import(nlme)
+import(rlang)
